@@ -2,9 +2,9 @@ package additionalFeatures.fillTables;
 
 public class FillWithQuestions {
 
-public static String q1 = "Jaka jest stolica Madagaskaru?";
-public static String q2 = "Ile wynosi prędkość światła?";
-public static String q3 = "Kierowca Fiata ma brata, ale brat kierowcy Fiata nie ma brata. Kim jest kierowca Fiata?";
+public static String q1 = "1";
+public static String q2 = "2";
+public static String q3 = "3";
 public static String q4 = "4";
 public static String q5 = "5";
 public static String q6 = "6";
