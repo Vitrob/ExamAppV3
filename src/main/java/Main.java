@@ -25,14 +25,7 @@ public class Main {
 
             questionManager.addQuestions("question?");
             questionManager.addQuestions("question?");
-            questionManager.addQuestions("question?");
-            questionManager.addQuestions("question?");
-            questionManager.addQuestions("pytanie?");
-            questionManager.addQuestions("pytanie?");
-            questionManager.addQuestions("pytanie?");
-            questionManager.addQuestions("pytanie?");
-            questionManager.addQuestions("pytanie?");
-            questionManager.addQuestions("pytanie?");
+            
 
 
             System.out.printf("Following user is added to the database: %s%n", userManager
