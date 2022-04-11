@@ -23,10 +23,10 @@ public class Main {
             questionManager.deleteQuestions();
 
 
-            questionManager.addQuestions("Jaka jest stolica Madagaskaru?");
-            questionManager.addQuestions("Ile wynosi prędkość światła?");
-            questionManager.addQuestions("Kierowca Fiata ma brata, ale brat kierowcy Fiata nie ma brata. Kim jest kierowca Fiata?");
-            questionManager.addQuestions("Z naprzeciwka jadą dwa pociągi o prędkości 300km/h. Jaka jest ich łączna prędkość?");
+            questionManager.addQuestions("question?");
+            questionManager.addQuestions("question?");
+            questionManager.addQuestions("question?");
+            questionManager.addQuestions("question?");
             questionManager.addQuestions("pytanie?");
             questionManager.addQuestions("pytanie?");
             questionManager.addQuestions("pytanie?");
