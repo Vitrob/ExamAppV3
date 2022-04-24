@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 
 public class RandomQuestion {
 
+    ArrayList<Integer> idNumbers = new ArrayList<>();
 
     public static void get5RandomNumbers() {
         List<Integer> range = IntStream.range(1, 11).boxed()
@@ -18,7 +19,7 @@ public class RandomQuestion {
         range.subList(0, 5).forEach(System.out::println);
     }
 
-    public static void get5RandomNumbersV2() {
+    public List<Integer> get5RandomNumbersV2() {
 
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
@@ -26,9 +27,12 @@ public class RandomQuestion {
         }
 
         Collections.shuffle(list);
-        for (int i = 0; i < 3; i++) {
-            System.out.println(list.get(i));
+        for (int i = 0; i < 5; i++) {
+
+            idNumbers.add(i);
         }
+
+        return idNumbers;
     }
 
 }

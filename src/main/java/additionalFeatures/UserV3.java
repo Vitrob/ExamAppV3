@@ -1,4 +1,4 @@
-package tables;
+package additionalFeatures;
 
 import lombok.*;
 import tables.Question;

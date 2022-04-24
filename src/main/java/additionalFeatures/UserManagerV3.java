@@ -1,9 +1,8 @@
-package managers;
+package additionalFeatures;
 
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import tables.UserV3;
 
 import java.util.List;
 import java.util.Optional;

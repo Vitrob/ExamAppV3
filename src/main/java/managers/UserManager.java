@@ -1,11 +1,15 @@
 package managers;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import tables.Question;
 import tables.User;
 
 import java.util.List;
 import java.util.Optional;
+
 
 public class UserManager {
 
@@ -14,6 +18,7 @@ public class UserManager {
     public UserManager(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
 
     public List<User> getUsers() {
         try (Session session = sessionFactory.openSession()) {
@@ -24,9 +29,27 @@ public class UserManager {
         }
     }
 
+    public User getOneUser() {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            User user = session.createQuery("FROM User WHERE id_number = 1", User.class).uniqueResult();
+
+            session.getTransaction().commit();
+            return user;
+        }
+    }
+
+    public Optional<User> getOneUserWithOptional () {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            User user = session.createQuery("FROM User WHERE id_number = 1", User.class).uniqueResult();
+            session.getTransaction().commit();
+            return Optional.ofNullable(user);
+        }
+    }
 
     public Optional<Integer> addUser(String userName, String userLastName,
-                                     String password, int permissionLevel, int result) {
+                                     String password, int permissionLevel, int result, List<Question> questions) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Integer id = (Integer) session.save(
@@ -36,6 +59,7 @@ public class UserManager {
                             .password(password)
                             .permissionLevel(permissionLevel)
                             .result(result)
+                            .questions(questions)
                             .build());
             session.getTransaction().commit();
             return Optional.ofNullable(id);

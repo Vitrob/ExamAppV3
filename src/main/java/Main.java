@@ -1,10 +1,14 @@
 
+
+import fillTables.FillWithUsers;
 import managers.QuestionManager;
 import managers.UserManager;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import tables.Question;
 import tables.User;
+
+
 
 
 public class Main {
@@ -15,32 +19,27 @@ public class Main {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Question.class)
                 .buildSessionFactory()) {
+
+
             UserManager userManager = new UserManager(factory);
             QuestionManager questionManager = new QuestionManager(factory);
-
-
+            FillWithUsers fillWithUsers = new FillWithUsers(factory);
             userManager.deleteUsers();
             questionManager.deleteQuestions();
 
-
-            questionManager.addQuestions("question?");
-            questionManager.addQuestions("question?");
-            
+           fillWithUsers.addUsers();
 
 
-            System.out.printf("Following user is added to the database: %s%n", userManager
-                    .addUser("Jan", "Kowalski", "OKOŃ", 0, 5));
-
-            System.out.printf("Following user is added to the database: %s%n", userManager
-                    .addUser("Marian", "Nowak", "n3fry7", 1, 0));
-
-            System.out.println(userManager.getUsers());
-            //  CustomUser.addUserManually(factory);
 
             System.out.println(userManager.getUsers());
 
 
-            System.out.println(questionManager);
+            System.out.println(userManager.getUsers());
+            System.out.println("Only one user: " + userManager.getOneUser());
+            System.out.println("Only one userV2: " + userManager.getOneUserWithOptional());
+
+
+
 
         } catch (Exception e) {
             System.out.printf("Error: %s%n", e.getMessage());

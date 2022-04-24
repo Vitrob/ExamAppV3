@@ -11,7 +11,7 @@ public class CustomUser {
     private static String password;
     private static int permissionLevel;
     private static int result;
-
+/*
     // ROZWAŻMY MOŻLIWOść DODAWANIA STUDENTÓW SCANNEREM
     public static void addUserManually(SessionFactory sessionFactory) {
         boolean validate = false;
@@ -65,6 +65,9 @@ public class CustomUser {
         UserManager userManager = new UserManager(sessionFactory);
         userManager.addUser(userName,userLastName,password,permissionLevel,result);
     }
+
+
+ */
 }
 
 
