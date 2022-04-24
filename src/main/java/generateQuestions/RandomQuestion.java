@@ -10,13 +10,15 @@ import java.util.stream.IntStream;
 
 public class RandomQuestion {
 
-    ArrayList<Integer> idNumbers = new ArrayList<>();
+    List<Integer> idNumbers = new ArrayList<>();
 
-    public static void get5RandomNumbers() {
+    public List<Integer> get5RandomNumbers() {
         List<Integer> range = IntStream.range(1, 11).boxed()
                 .collect(Collectors.toCollection(ArrayList::new));
         Collections.shuffle(range);
-        range.subList(0, 5).forEach(System.out::println);
+        System.out.println();
+       idNumbers =  range.subList(0, 5);
+        return idNumbers;
     }
 
     public List<Integer> get5RandomNumbersV2() {

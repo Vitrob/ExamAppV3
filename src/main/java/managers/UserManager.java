@@ -1,14 +1,13 @@
 package managers;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
+import generateQuestions.RandomQuestion;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tables.Question;
 import tables.User;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public class UserManager {
@@ -19,6 +18,35 @@ public class UserManager {
         this.sessionFactory = sessionFactory;
     }
 
+
+    public void addUsers() {
+
+
+        QuestionManager questionManager = new QuestionManager(sessionFactory);
+
+        List<Question> questions = questionManager.addQuestions();
+
+
+
+        User user1 = new User("Jan", "Kowalski", "OKOŃ", 0, 5, questions);
+        User user2 = new User("Marian", "Nowak", "n3frY7", 1, 3, questions);
+        User user3 = new User("Albert", "Einstein", "pass", 0, 4, questions);
+        User user4 = new User("Nikola", "Tesla", "qwerty", 1, 2, questions);
+        User user5 = new User("Sygryda", "Storråda", "świętosława", 1, 1, questions);
+
+
+        List<User> users = List.of(user1, user2, user3, user4, user5);
+
+
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+
+            users.forEach(session::save);
+            session.getTransaction().commit();
+
+        }
+
+    }
 
     public List<User> getUsers() {
         try (Session session = sessionFactory.openSession()) {
@@ -39,34 +67,6 @@ public class UserManager {
         }
     }
 
-    public Optional<User> getOneUserWithOptional () {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            User user = session.createQuery("FROM User WHERE id_number = 1", User.class).uniqueResult();
-            session.getTransaction().commit();
-            return Optional.ofNullable(user);
-        }
-    }
-
-    public Optional<Integer> addUser(String userName, String userLastName,
-                                     String password, int permissionLevel, int result, List<Question> questions) {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            Integer id = (Integer) session.save(
-                    User.builder()
-                            .userName(userName)
-                            .userLastName(userLastName)
-                            .password(password)
-                            .permissionLevel(permissionLevel)
-                            .result(result)
-                            .questions(questions)
-                            .build());
-            session.getTransaction().commit();
-            return Optional.ofNullable(id);
-        }
-    }
-
-
     public void deleteUsers() {
         try (Session session = sessionFactory.openSession()) {
             session.getTransaction().begin();
@@ -74,4 +74,5 @@ public class UserManager {
             session.getTransaction().commit();
         }
     }
+
 }

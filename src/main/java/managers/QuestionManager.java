@@ -1,15 +1,13 @@
 package managers;
 
 
-import generateQuestions.RandomQuestion;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tables.Question;
 import tables.User;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 public class QuestionManager {
 
@@ -19,30 +17,47 @@ public class QuestionManager {
         this.sessionFactory = sessionFactory;
     }
 
-    public List<Question> getQuestion() {
+
+    public List<Question> addQuestions() {
+        Question question1 = new Question("question1?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question2 = new Question("question2?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question3 = new Question("question3?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question4 = new Question("question4?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question5 = new Question("question5?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question6 = new Question("question6?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question7 = new Question("question7?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question8 = new Question("question8?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question9 = new Question("question9?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        Question question10 = new Question("question10?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+
+        List<Question> questions;
+        questions = List.of(question1, question2,question3,question4,question5,question6,question7,question8,question9,question10);
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<Question> questions = session.createQuery("FROM tables.Question", Question.class).list();
+
+
+            questions.forEach(session::save);
+            session.getTransaction().commit();
+        }
+return questions;
+    }
+
+    public List<Question> getQuestions() {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            List<Question> questions = session.createQuery("FROM Question", Question.class).list();
             session.getTransaction().commit();
             return questions;
         }
     }
 
-
-    public Optional<Integer> addQuestions(String questionText, String correctAnswerText, String wrongAnswerText1,
-                                          String wrongAnswerText2, String wrongAnswerText3) {
+    public Question getOneQuestion() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            Integer id = (Integer) session.save(
-                    Question.builder()
-                            .questionText(questionText)
-                            .correctAnswerText(correctAnswerText)
-                            .wrongAnswerText1(wrongAnswerText1)
-                            .wrongAnswerText2(wrongAnswerText2)
-                            .wrongAnswerText3(wrongAnswerText3)
-                            .build());
+            Question question = session.createQuery("FROM Question WHERE id_number = 1", Question.class).uniqueResult();
+
             session.getTransaction().commit();
-            return Optional.ofNullable(id);
+            return question;
         }
     }
 
@@ -54,5 +69,6 @@ public class QuestionManager {
             session.getTransaction().commit();
         }
     }
+
 
 }

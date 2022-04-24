@@ -1,10 +1,5 @@
 package additionalFeatures;
 
-import managers.UserManager;
-import org.hibernate.SessionFactory;
-
-import java.util.Scanner;
-
 public class CustomUser {
     private static String userName;
     private static String userLastName;

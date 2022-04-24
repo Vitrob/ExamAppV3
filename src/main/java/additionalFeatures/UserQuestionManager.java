@@ -1,48 +1,46 @@
 package additionalFeatures;
 
-import generateQuestions.RandomQuestion;
 
+import generateQuestions.RandomQuestion;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tables.Question;
-import tables.User;
-
-
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 public class UserQuestionManager {
+
+    private final SessionFactory sessionFactory;
+    RandomQuestion randomQuestion = new RandomQuestion();
+
     public UserQuestionManager(SessionFactory sessionFactory) {
 
         this.sessionFactory = sessionFactory;
     }
 
-    RandomQuestion randomQuestion = new RandomQuestion();
 
-    List<Integer> idNumbers = new ArrayList<>();
-    private final SessionFactory sessionFactory;
+    public List<Question> getQuestions() {
 
-
-    public Optional<User> mapQuestionsToUsers() {
-        idNumbers = randomQuestion.get5RandomNumbersV2();
-
+        List<Question> questions = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
+            System.out.println();
+            System.out.println("START");
 
-            User user = session.createQuery("FROM User WHERE id_number = " + 1, User.class).uniqueResult();
-            Question question = session.createQuery("FROM Question WHERE id_number = " + 1, Question.class).uniqueResult();
+            for (int number : randomQuestion.get5RandomNumbers()
+            ) {
+             questions.add(  session.createQuery("FROM Question WHERE id_number =" + number, Question.class).uniqueResult());
+            }
 
 
+            System.out.println("STOP");
             session.getTransaction().commit();
-            return Optional.ofNullable(user);
-
 
         }
+        return questions;
     }
-
 
 }
