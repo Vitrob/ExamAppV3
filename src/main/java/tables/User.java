@@ -42,9 +42,8 @@ public class User {
     private int result;
 
     @NonNull
-    @ManyToMany (fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Question> questions;
-
 
 
 }

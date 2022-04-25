@@ -4,7 +4,7 @@ package managers;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tables.Question;
-import tables.User;
+
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class QuestionManager {
     }
 
 
-    public List<Question> addQuestions() {
+    public void addQuestions() {
         Question question1 = new Question("question1?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
         Question question2 = new Question("question2?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
         Question question3 = new Question("question3?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
@@ -39,7 +39,6 @@ public class QuestionManager {
             questions.forEach(session::save);
             session.getTransaction().commit();
         }
-return questions;
     }
 
     public List<Question> getQuestions() {

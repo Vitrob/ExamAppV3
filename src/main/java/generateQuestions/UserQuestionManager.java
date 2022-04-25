@@ -1,7 +1,5 @@
-package additionalFeatures;
+package generateQuestions;
 
-
-import generateQuestions.RandomQuestion;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tables.Question;
@@ -27,16 +25,11 @@ public class UserQuestionManager {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
-            System.out.println();
-            System.out.println("START");
-
             for (int number : randomQuestion.get5RandomNumbers()
             ) {
-             questions.add(  session.createQuery("FROM Question WHERE id_number =" + number, Question.class).uniqueResult());
+                questions.add(session.createQuery("FROM Question WHERE id_number =" + number, Question.class).uniqueResult());
             }
 
-
-            System.out.println("STOP");
             session.getTransaction().commit();
 
         }

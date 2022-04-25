@@ -17,7 +17,7 @@ public class RandomQuestion {
                 .collect(Collectors.toCollection(ArrayList::new));
         Collections.shuffle(range);
         System.out.println();
-       idNumbers =  range.subList(0, 5);
+        idNumbers = range.subList(0, 5);
         return idNumbers;
     }
 
