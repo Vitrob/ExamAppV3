@@ -1,4 +1,4 @@
-package additionalFeatures.additional_managers;
+package managers.additional_managers;
 
 
 import org.hibernate.Session;
@@ -6,11 +6,11 @@ import org.hibernate.SessionFactory;
 import tables.Question;
 import java.util.Optional;
 
-public class AdditionalQuestionManager {
+public class OptionalQuestionManager {
 
     private final SessionFactory sessionFactory;
 
-    public AdditionalQuestionManager(SessionFactory sessionFactory) {
+    public OptionalQuestionManager(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

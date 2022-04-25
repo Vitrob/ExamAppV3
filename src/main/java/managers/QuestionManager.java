@@ -1,6 +1,7 @@
 package managers;
 
 
+import managers.additional_managers.OptionalQuestionManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import tables.Question;
@@ -17,8 +18,23 @@ public class QuestionManager {
         this.sessionFactory = sessionFactory;
     }
 
-
     public void addQuestions() {
+        OptionalQuestionManager optionalQuestionManager = new OptionalQuestionManager(sessionFactory);
+        optionalQuestionManager.addQuestionsWithOptional("question1?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question2?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question3?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question4?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question5?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question6?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question7?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question8?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question9?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question10?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+
+    }
+
+    public List<Question> addQuestionsV2() {
+
         Question question1 = new Question("question1?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
         Question question2 = new Question("question2?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
         Question question3 = new Question("question3?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
@@ -31,7 +47,7 @@ public class QuestionManager {
         Question question10 = new Question("question10?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
 
         List<Question> questions;
-        questions = List.of(question1, question2,question3,question4,question5,question6,question7,question8,question9,question10);
+        questions = List.of(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
@@ -39,6 +55,7 @@ public class QuestionManager {
             questions.forEach(session::save);
             session.getTransaction().commit();
         }
+        return questions;
     }
 
     public List<Question> getQuestions() {

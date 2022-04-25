@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Optional;
+
 
 @Getter
 @AllArgsConstructor
@@ -42,7 +42,8 @@ public class User {
     private int result;
 
     @NonNull
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+            //(fetch = FetchType.EAGER)
     private List<Question> questions;
 
 

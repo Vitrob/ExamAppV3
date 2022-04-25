@@ -1,4 +1,4 @@
-package additionalFeatures.additional_managers;
+package managers.additional_managers;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class AdditionalUserManager {
+public class OptionalUserManager {
 
     private final SessionFactory sessionFactory;
 
-    public AdditionalUserManager(SessionFactory sessionFactory) {
+    public OptionalUserManager(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

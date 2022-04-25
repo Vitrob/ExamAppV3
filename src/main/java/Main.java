@@ -1,4 +1,5 @@
 
+import exam.Exam;
 import managers.QuestionManager;
 import managers.UserManager;
 import org.hibernate.SessionFactory;
@@ -19,13 +20,14 @@ public class Main {
 
             QuestionManager questionManager = new QuestionManager(sessionFactory);
             UserManager userManager = new UserManager(sessionFactory);
+            Exam exam = new Exam(sessionFactory);
 
-            userManager.deleteUsers();
-            questionManager.deleteQuestions();
+            userManager.deleteUsers(); //deleting old users
+            questionManager.deleteQuestions(); //deleting old questions
             questionManager.addQuestions(); // adding 10 questions to database
-            userManager.addUsers();
-            System.out.println();
-
+            //List<Question> questions = questionManager.addQuestionsV2(); // getting all questions as list
+            userManager.addUsers(); //adding new users to database
+            exam.getQuestions();
 
         } catch (Exception e) {
             System.out.printf("Error: %s%n", e.getMessage());
