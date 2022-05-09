@@ -22,7 +22,6 @@ public class Main {
 
             QuestionManager questionManager = new QuestionManager(sessionFactory);
             UserManager userManager = new UserManager(sessionFactory);
-            Exam exam = new Exam(sessionFactory);
             LoginClass loginClass = new LoginClass(sessionFactory);
 
 
@@ -31,7 +30,6 @@ public class Main {
             questionManager.addQuestions(); // adding 10 questions to the database
             //List<Question> questions = questionManager.addQuestionsV2(); // getting all the questions as list
             userManager.addUsers(); //adding new users to the database
-           // exam.getQuestions(); //getting all the data that is stored in the databse for one user
            loginClass.loginFromListInJava(); //getting all the users and using stream() to check login values
 
 

@@ -69,14 +69,13 @@ public class LoginClass {
         Exam exam = new Exam(sessionFactory);
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-          //  User user = session.createQuery ("FROM User WHERE user_name =" + answerName, User.class).uniqueResult();
+
             Query<User> query = session
                     .createQuery("FROM User WHERE user_name = :un"
                             , User.class)
                     .setParameter("un"
                             , answerName);
             User user = query.uniqueResult();
-
 
             session.getTransaction().commit();
             int idNumber = user.getIdNumber();

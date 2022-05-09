@@ -1,4 +1,4 @@
-package login;
+package additionalFeatures;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

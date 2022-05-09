@@ -1,5 +1,6 @@
 package exam;
 
+import lombok.NonNull;
 import managers.UserManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +12,7 @@ import tables.User;
 import java.util.List;
 
 
-public class Exam  {
+public class Exam {
     private final SessionFactory sessionFactory;
 
     public Exam(SessionFactory sessionFactory) {
@@ -24,23 +25,26 @@ public class Exam  {
 
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            System.out.println("------------------- USER  1--------------------------");
-            User user1 = userManager.getOneUser(userNumber);
-            System.out.println(user1);
-            System.out.println("------------------- USER 2--------------------------");
-            User user2 = userManager.getOneUser();
-            System.out.println(user2);
 
-            System.out.println("------------------ QUESTIONS --------------------------");
-            List<Question> questions = user1.getQuestions();
-            System.out.println(questions);
-            System.out.println("------------------ QUESTION 1 BY 1 --------------------------");
-            Question q = questions.get(1);
-            System.out.println(q);
-            System.out.println("------------------ TEXT --------------------------");
-            System.out.println(q.getQuestionText());
+            User user = userManager.getOneUser(userNumber);
+            //    System.out.println(user); //getting all the data that is stored in the databse for one user
+
+            List<Question> questions = user.getQuestions();
+            @NonNull String questionText = questions.get(1).getQuestionText();
+            @NonNull String correctAnswerText = questions.get(1).getCorrectAnswerText();
+            @NonNull String wrongAnswerText1 = questions.get(1).getWrongAnswerText1();
+            @NonNull String wrongAnswerText2 = questions.get(1).getWrongAnswerText2();
+            @NonNull String wrongAnswerText3 = questions.get(1).getWrongAnswerText3();
+
+            System.out.println("------------------ QUESTION 1--------------------------");
+            System.out.println(questionText);
             System.out.println("-------------------------------------------------------");
 
+
+            System.out.println("A: " + correctAnswerText);
+            System.out.println("B: " + wrongAnswerText1);
+            System.out.println("C: " + wrongAnswerText2);
+            System.out.println("D: " + wrongAnswerText3);
 
 
             session.getTransaction().commit();
