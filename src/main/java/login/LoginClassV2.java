@@ -1,19 +1,17 @@
 package login;
 
-import exam.Exam;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import tables.User;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class LoginClass {
+public class LoginClassV2 {
 
     private final SessionFactory sessionFactory;
 
-    public LoginClass(SessionFactory sessionFactory) {
+    public LoginClassV2(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -40,15 +38,14 @@ public class LoginClass {
             answerName = input.nextLine();
             String finalNameAnswer = answerName;
 
-            validate = getUsers().stream()
-                    .noneMatch(user -> user.getUserName().equals(finalNameAnswer));
+            validate = getUsers(finalNameAnswer).equals(finalNameAnswer);
             System.out.println("Wrong name, please enter your name again");
             System.out.println("Remember - it is case sensitive");
 
         } while (validate);
 
         System.out.println("CORRECT NAME!");
-
+/*
         do {
             System.out.println("----------------------------------SECOND STEP---------------------------------------");
             System.out.print("Please enter your password: ");
@@ -66,35 +63,20 @@ public class LoginClass {
 
         System.out.println("CORRECT PASSWORD!");
 
-        Exam exam = new Exam(sessionFactory);
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-          //  User user = session.createQuery ("FROM User WHERE user_name =" + answerName, User.class).uniqueResult();
-            Query<User> query = session
-                    .createQuery("FROM User WHERE user_name = :un"
-                            , User.class)
-                    .setParameter("un"
-                            , answerName);
-            User user = query.uniqueResult();
-
-
-            session.getTransaction().commit();
-            int idNumber = user.getIdNumber();
-            exam.getQuestions(idNumber);
-        }
-    }
-
-    public List<User> getUsers() {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            List<User> users = session.createQuery("FROM User", User.class).list();
-       //             users.forEach(System.out::println);
-            session.getTransaction().commit();
-            return users;
-        }
+*/
     }
 
 
+    public String getUsers(String name) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            String user = session.createQuery("FROM User WHERE user_name = " + name, User.class).uniqueResult().toString();
+
+
+            session.getTransaction().commit();
+            return user;
+        }
+    }
 
 
     public void loginFromDatabase() {

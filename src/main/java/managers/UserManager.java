@@ -4,6 +4,7 @@ package managers;
 import generateQuestions.UserQuestionManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import tables.User;
 
 import java.util.List;
@@ -56,7 +57,20 @@ public class UserManager {
     public User getOneUser() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            User user = session.createQuery("FROM User WHERE id_number = 1", User.class).uniqueResult();
+//            User user = session.createQuery("FROM User WHERE id_number = 1", User.class).uniqueResult();
+            Query<User> query = session.createQuery("FROM User", User.class);
+            query.setMaxResults(1);
+            User user = query.uniqueResult();
+
+            session.getTransaction().commit();
+            return user;
+        }
+    }
+    public User getOneUser(int userNumber) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            User user = session.createQuery("FROM User WHERE id_number = " + userNumber, User.class).uniqueResult();
+
 
             session.getTransaction().commit();
             return user;

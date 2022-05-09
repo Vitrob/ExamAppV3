@@ -9,6 +9,7 @@ import tables.Question;
 import tables.User;
 
 
+
 public class Main {
     public static void main(String[] args) {
 
@@ -24,13 +25,16 @@ public class Main {
             Exam exam = new Exam(sessionFactory);
             LoginClass loginClass = new LoginClass(sessionFactory);
 
+
             userManager.deleteUsers(); //deleting old users
             questionManager.deleteQuestions(); //deleting old questions
-            questionManager.addQuestions(); // adding 10 questions to database
-            //List<Question> questions = questionManager.addQuestionsV2(); // getting all questions as list
-            userManager.addUsers(); //adding new users to database
-            //exam.getQuestions(); //getting all the data that is stored in databse for one user
-            loginClass.loginFromListInJava(); //getting all the users and using stream() to check login values
+            questionManager.addQuestions(); // adding 10 questions to the database
+            //List<Question> questions = questionManager.addQuestionsV2(); // getting all the questions as list
+            userManager.addUsers(); //adding new users to the database
+           // exam.getQuestions(); //getting all the data that is stored in the databse for one user
+           loginClass.loginFromListInJava(); //getting all the users and using stream() to check login values
+
+
 
         } catch (Exception e) {
             System.out.printf("Error: %s%n", e.getMessage());
