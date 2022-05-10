@@ -20,16 +20,16 @@ public class QuestionManager {
 
     public void addQuestions() {
         OptionalQuestionManager optionalQuestionManager = new OptionalQuestionManager(sessionFactory);
-        optionalQuestionManager.addQuestionsWithOptional("question1?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question2?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question3?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question4?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question5?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question6?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question7?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question8?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question9?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
-        optionalQuestionManager.addQuestionsWithOptional("question10?", "correct answer", "wrong answer", "wrong answer", "wrong answer");
+        optionalQuestionManager.addQuestionsWithOptional("question1?", "correct answer q1", "wrong answer q1", "wrong answer q1", "wrong answer q1");
+        optionalQuestionManager.addQuestionsWithOptional("question2?", "correct answer q2", "wrong answer q2", "wrong answer q2", "wrong answer q2");
+        optionalQuestionManager.addQuestionsWithOptional("question3?", "correct answer q3", "wrong answer q3", "wrong answer q3", "wrong answer q3");
+        optionalQuestionManager.addQuestionsWithOptional("question4?", "correct answer q4", "wrong answer q4", "wrong answer q4", "wrong answer q4");
+        optionalQuestionManager.addQuestionsWithOptional("question5?", "correct answer q5", "wrong answer q5", "wrong answer q5", "wrong answer q5");
+        optionalQuestionManager.addQuestionsWithOptional("question6?", "correct answer q6", "wrong answer q6", "wrong answer q6", "wrong answer q6");
+        optionalQuestionManager.addQuestionsWithOptional("question7?", "correct answer q7", "wrong answer q7", "wrong answer q7", "wrong answer q7");
+        optionalQuestionManager.addQuestionsWithOptional("question8?", "correct answer q8", "wrong answer q8", "wrong answer q8", "wrong answer q8");
+        optionalQuestionManager.addQuestionsWithOptional("question9?", "correct answer q9", "wrong answer q9", "wrong answer q9", "wrong answer q9");
+        optionalQuestionManager.addQuestionsWithOptional("question10?", "correct answer q10", "wrong answer q10", "wrong answer q10", "wrong answer q10");
 
     }
 

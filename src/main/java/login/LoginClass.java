@@ -35,7 +35,7 @@ public class LoginClass {
         String answerPassword;
 
         do {
-            System.out.println("----------------------------------FIRST STEP----------------------------------------");
+            System.out.println("------------------------------------FIRST STEP------------------------------------------");
             System.out.print("Please enter your name: ");
             answerName = input.nextLine();
             String finalNameAnswer = answerName;
@@ -50,7 +50,7 @@ public class LoginClass {
         System.out.println("CORRECT NAME!");
 
         do {
-            System.out.println("----------------------------------SECOND STEP---------------------------------------");
+            System.out.println("------------------------------------SECOND STEP-----------------------------------------");
             System.out.print("Please enter your password: ");
             answerPassword = input.nextLine();
             String finalPasswordAnswer = answerPassword;
@@ -87,13 +87,11 @@ public class LoginClass {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             List<User> users = session.createQuery("FROM User", User.class).list();
-       //             users.forEach(System.out::println);
+            //             users.forEach(System.out::println);
             session.getTransaction().commit();
             return users;
         }
     }
-
-
 
 
     public void loginFromDatabase() {
